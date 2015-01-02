@@ -23,6 +23,7 @@
     "phantomjs": "^1.9.13"
   },
   "dependencies": {
+    "ejs": "^2.0.3",
     "express": "^4.10.6",
     "socket.io": "^1.2.1"
   }
