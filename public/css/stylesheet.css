@@ -1,0 +1,29 @@
+html, body { height: 100%; width: 100%;}
+body {
+  background: #000000;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 18px;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a.button {
+  background: #185da8;
+  border-radius: 5px;
+  font-size: 30px;
+  padding: 10px;
+  width: 200px;
+}
+
+#game-intro {
+  width: 350px
+  position: absolute;
+  text-align: center;
+}
