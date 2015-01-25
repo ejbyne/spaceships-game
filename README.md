@@ -1,4 +1,4 @@
-### Spaceships game
+# Spaceships game
 
 ## Summary
 
