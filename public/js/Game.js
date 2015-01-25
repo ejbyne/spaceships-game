@@ -26,15 +26,13 @@ $(document).ready(function() {
     delete keysDown[e.keyCode];
   }, false);
 
-  // Reset the game when the player catches a monster
   var setShipLocation = function () {
     ship.x = 24 + (Math.random() * (context.canvas.width - 48));
     ship.y = 24 + (Math.random() * (context.canvas.height - 48));
   };
 
-  // Update game objects
   var update = function(modifier) {
-    if (38 in keysDown) { // Player holding up
+    if (38 in keysDown) {
       ship.y -= ship.speed * modifier;
 
       // if (ship.y > context.canvas.height - 24) {
@@ -55,7 +53,8 @@ $(document).ready(function() {
         ship.x = context.canvas.width - 24;
       }
     }
-    if (39 in keysDown) { // Player holding right
+
+    if (39 in keysDown) {
       ship.x += ship.speed * modifier;
 
       if (ship.x > context.canvas.width - 24) {
@@ -64,16 +63,6 @@ $(document).ready(function() {
     }
 
     socket.emit('move ship', {x: ship.x, y: ship.y});
-
-    // Are they touching?
-    // if (
-    //   hero.x <= (monster.x + 32)
-    //   && monster.x <= (hero.x + 32)
-    //   && hero.y <= (monster.y + 32)
-    //   && monster.y <= (hero.y + 32)
-    // ) {
-    //   ++monstersCaught;
-    // }
   };
 
   socket.on('existing ship', function(shipData) {
@@ -91,18 +80,14 @@ $(document).ready(function() {
   });
 
   socket.on('move ship', function(shipData) {
-    // console.log(shipsData);
-    // if (Object.keys(otherShips).length > 0) {
     otherShips[shipData.id].x = shipData.x;
     otherShips[shipData.id].y = shipData.y;
-    // }
   });
 
   socket.on('delete ship', function(shipData) {
     delete otherShips[shipData.id];
   })
 
-  // Draw everything
   var render = function() {
     context.clearRect (0 , 0 , canvas.width, canvas.height);
 
@@ -125,7 +110,6 @@ $(document).ready(function() {
     };
   };
 
-  // The main game loop
   var main = function() {
     var now = Date.now();
     var delta = now - then;
@@ -139,15 +123,11 @@ $(document).ready(function() {
     requestAnimationFrame(main);
   };
 
-  // Cross-browser support for requestAnimationFrame
-  // var w = window;
-  // requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
-
-  // Let's play this game!
   var then = Date.now();
   setShipLocation();
 
   socket.emit('start', {x: ship.x, y: ship.y});
 
   main();
+
 });

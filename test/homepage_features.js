@@ -5,8 +5,8 @@ describe('homepage', function(){
 
   it('homepage', function(){
     casper.then(function(){
-      // expect("body").to.include.text("Rockets");
-      expect("body").to.contain.text("Rockets");
+      // expect("body").to.include.text("Spaceships");
+      expect("body").to.contain.text("Spaceships");
     });
   });
 });

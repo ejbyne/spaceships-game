@@ -25,9 +25,6 @@ var socket = function(io) {
       remoteShips[socket.id].x = shipData.x;
       remoteShips[socket.id].y = shipData.y;
       socket.broadcast.emit("move ship", {id: remoteShips[socket.id].id, x: remoteShips[socket.id].x, y: remoteShips[socket.id].y})
-      // for (var keys in remoteShips) {
-      //   socket.broadcast.emit("all ships", {id: remoteShips[keys].id, x: remoteShips[keys].x, y: remoteShips[keys].y});
-      // };
     });
   });
 };
